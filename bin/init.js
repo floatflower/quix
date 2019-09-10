@@ -13,6 +13,7 @@ if(fs.existsSync(`${__dirname}/../../../.env`)) {
     require('dotenv').config({path: `${__dirname}/../../../.env`});
 
     createDirectory('bin')
+        .then(() => createDirectory('src/config'))
         .then(() => createDirectory('src/amqp'))
         .then(() => createDirectory('src/amqp/consumer'))
         .then(() => createDirectory('src/amqp/producer'))

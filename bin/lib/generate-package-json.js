@@ -17,25 +17,27 @@ module.exports = (packageData) => {
     packageData.scripts['quix:dependencies'] = installDependencies();
     packageData.scripts['quix:init'] = 'node ./node_modules/quix/bin/init.js';
 
-    packageData.scripts['quix:create:route'] = 'node ./node_modules/quix/bin/route.js';
+
     packageData.scripts['quix:create:dockerfile'] = 'node ./node_modules/quix/bin/dockerfile.js';
     packageData.scripts['quix:create:gitlab-ci'] = 'node ./node_modules/quix/bin/gitlab-ci.js';
     packageData.scripts['quix:create:knexfile'] = 'node ./node_modules/quix/bin/knexfile.js';
     packageData.scripts['quix:create:package.json'] = 'node ./node_modules/quix/bin/package.js';
-    packageData.scripts['quix:create:response-handler'] = 'node ./node_modules/quix/bin/response-handler.js';
-    packageData.scripts['quix:create:repository'] = 'node ./node_modules/quix/bin/repository.js';
-    packageData.scripts['quix:create:event-handler'] = 'node ./node_modules/quix/bin/event-handler.js';
-    packageData.scripts['quix:create:auth'] = 'node ./node_modules/quix/bin/auth.js';
 
     /**
-     * Generate Modules
+     * Generate Template
      */
     packageData.scripts['quix:template:amqp-producer:wq'] = 'node ./node_modules/quix/bin/create-template/amqp-consumer-wq.js';
     packageData.scripts['quix:template:amqp-consumer:wq'] = 'node ./node_modules/quix/bin/create-template/amqp-consumer-wq.js';
     packageData.scripts['quix:template:amqp-producer:ps'] = 'node ./node_modules/quix/bin/create-template/amqp-producer-ps.js';
     packageData.scripts['quix:template:amqp-consumer:ps'] = 'node ./node_modules/quix/bin/create-template/amqp-consumer-ps.js';
     packageData.scripts['quix:template:socket-io-handler'] = 'node ./node_modules/quix/bin/create-template/socket-io-handler.js';
-    packageData.scripts['quix:template:socket-io-handler'] = 'node ./node_modules/quix/bin/create-template/socket-io-authenticator.js';
+    packageData.scripts['quix:template:socket-io-authenticator'] = 'node ./node_modules/quix/bin/create-template/socket-io-authenticator.js';
+    packageData.scripts['quix:template:event-handler'] = 'node ./node_modules/quix/bin/create-template/event-handler.js';
+    packageData.scripts['quix:template:repository'] = 'node ./node_modules/quix/bin/create-template/repository.js';
+    packageData.scripts['quix:template:route'] = 'node ./node_modules/quix/bin/create-template/route.js';
+    packageData.scripts['quix:template:create-table'] = 'node ./node_modules/quix/bin/create-template/create-table.js';
+    packageData.scripts['quix:template:seeder'] = 'node ./node_modules/quix/bin/create-template/seeder.js';
+
 
     packageData.main = 'src/app.js';
 
