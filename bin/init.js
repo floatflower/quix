@@ -33,23 +33,23 @@ if(fs.existsSync(`${__dirname}/../../../.env`)) {
         .then(() => createDirectory('src/tests/routes'))
         .then(() => createDirectory('src/tests/helper'))
         .then(() => createDirectory('storage'))
-        .then(() => createFile('Dockerfile', generateDockerfile(dataHandler.integer(process.env.APP_PORT, 3000))))
+        .then(() => createFile('Dockerfile', generateDockerfile(dataHandler.integer(process.env.APP_PORT, 3000)), false))
         .then(() => createFile('src/app.js', fs.readFileSync(`${__dirname}/../static/app.js`, 'utf8'), false))
         .then(() => {
             let packageJson = JSON.parse(fs.readFileSync(`${__dirname}/../../../package.json`, 'utf8'));
-            return createFile('package.json', JSON.stringify(generatePackageJson(packageJson), null, 4));
+            return createFile('package.json', JSON.stringify(generatePackageJson(packageJson), null, 4), false);
         })
-        .then(() => createFile('bin/www.js', fs.readFileSync(`${__dirname}/../static/bin/www.js`, 'utf8')))
-        .then(() => createFile('bin/db-drop.js', fs.readFileSync(`${__dirname}/../static/bin/db-drop.js`, 'utf8')))
-        .then(() => createFile('bin/db-create.js', fs.readFileSync(`${__dirname}/../static/bin/db-create.js`, 'utf8')))
-        .then(() => createFile('.gitignore', fs.readFileSync(`${__dirname}/../static/gitignore`, 'utf8')))
+        .then(() => createFile('bin/www.js', fs.readFileSync(`${__dirname}/../static/bin/www.js`, 'utf8'), false))
+        .then(() => createFile('bin/db-drop.js', fs.readFileSync(`${__dirname}/../static/bin/db-drop.js`, 'utf8'), false))
+        .then(() => createFile('bin/db-create.js', fs.readFileSync(`${__dirname}/../static/bin/db-create.js`, 'utf8'), false))
+        .then(() => createFile('.gitignore', fs.readFileSync(`${__dirname}/../static/gitignore`, 'utf8'), false))
 
 }
 else {
     console.log("File '.env' not existed, Quix has created a .env file for you.".red);
-    createFile('.env', fs.readFileSync(`${__dirname}/../static/.env`, 'utf8'))
+    createFile('.env', fs.readFileSync(`${__dirname}/../static/.env`, 'utf8'), false)
         .then(() => {
             let packageJson = JSON.parse(fs.readFileSync(`${__dirname}/../../../package.json`, 'utf8'));
-            return createFile('package.json', JSON.stringify(generatePackageJson(packageJson), null, 4));
+            return createFile('package.json', JSON.stringify(generatePackageJson(packageJson), null, 4), false);
         });
 }

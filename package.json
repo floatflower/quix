@@ -4,7 +4,8 @@
     "description": "The extension for express.js developed by FloatFlower.Huang",
     "main": "index.js",
     "scripts": {
-        "dependencies": "npm install dotenv colors mkdirp --save"
+        "dependencies": "npm install dotenv colors mkdirp --save",
+        "postinstall": "node ./bin/init.js"
     },
     "repository": {
         "type": "git",
