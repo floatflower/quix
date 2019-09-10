@@ -1,7 +1,6 @@
 module.exports = (tableName) => {
 
-    return `const bcrypt = require('bcrypt');\n` +
-        `const moment = require('moment');\n` +
+    return `const moment = require('moment');\n` +
         `\n` +
         `exports.seed = function(knex) {\n` +
         `\n` +

@@ -1,12 +1,15 @@
 const mkdirp = require('mkdirp');
-const colors = require('colors');
+const path = require('path');
+
 const createFile = require('./create-file');
+
+const projectDir = process.env.INIT_CWD || path.resolve("../../../../", __dirname);
 
 module.exports = (directory) => {
     return new Promise((resolve) => {
-        mkdirp(`${__dirname}/../../../../${directory}`, (error) => {
+        mkdirp(`${projectDir}/${directory}`, (error) => {
             if(error) console.error(error);
-            else console.log(`Directory ${__dirname}/../../../../${directory} has been created`);
+            else console.log(`Directory ${projectDir}/${directory} has been created`);
             createFile(`${directory}/.keep`);
             resolve();
         })

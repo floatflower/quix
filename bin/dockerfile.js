@@ -6,5 +6,5 @@ const generateDockerfile = require('./lib/generate-dockerfile');
 
 if(fs.existsSync(`${__dirname}/../../../.env`)) {
     require('dotenv').config({path: `${__dirname}/../../../.env`});
-    createFile('Dockerfile', generateDockerfile(dataHandler.integer(process.env.APP_PORT, 3000)))
+    createFile('Dockerfile', generateDockerfile(dataHandler.integer(process.env.APP_PORT, 3000)), true)
 }

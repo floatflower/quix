@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const colors = require('colors');
 
@@ -9,8 +10,10 @@ const createFile = require('./lib/create-file');
 const generateDockerfile = require('./lib/generate-dockerfile');
 const generatePackageJson = require('./lib/generate-package-json');
 
-if(fs.existsSync(`${__dirname}/../../../.env`)) {
-    require('dotenv').config({path: `${__dirname}/../../../.env`});
+const projectDir = process.env.INIT_CWD || path.resolve("../../../", __dirname);
+
+if(fs.existsSync(`${projectDir}/.env`)) {
+    require('dotenv').config({path: `${projectDir}/.env`});
 
     createDirectory('bin')
         .then(() => createDirectory('src/config'))
@@ -36,7 +39,7 @@ if(fs.existsSync(`${__dirname}/../../../.env`)) {
         .then(() => createFile('Dockerfile', generateDockerfile(dataHandler.integer(process.env.APP_PORT, 3000)), false))
         .then(() => createFile('src/app.js', fs.readFileSync(`${__dirname}/../static/app.js`, 'utf8'), false))
         .then(() => {
-            let packageJson = JSON.parse(fs.readFileSync(`${__dirname}/../../../package.json`, 'utf8'));
+            let packageJson = JSON.parse(fs.readFileSync(`${projectDir}/package.json`, 'utf8'));
             return createFile('package.json', JSON.stringify(generatePackageJson(packageJson), null, 4), true);
         })
         .then(() => createFile('bin/www.js', fs.readFileSync(`${__dirname}/../static/bin/www.js`, 'utf8'), false))
@@ -49,7 +52,7 @@ else {
     console.log("File '.env' not existed, Quix has created a .env file for you.".red);
     createFile('.env', fs.readFileSync(`${__dirname}/../static/.env`, 'utf8'), false)
         .then(() => {
-            let packageJson = JSON.parse(fs.readFileSync(`${__dirname}/../../../package.json`, 'utf8'));
+            let packageJson = JSON.parse(fs.readFileSync(`${projectDir}/package.json`, 'utf8'));
             return createFile('package.json', JSON.stringify(generatePackageJson(packageJson), null, 4), false);
         });
 }

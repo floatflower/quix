@@ -25,9 +25,9 @@ let filenameValidator = {
 let inputter = new Inputter();
 
 inputter
-    .hint('Input the http method: (default to get',' supported all/get/post..., reference: https://expressjs.com/zh-tw/guide/routing.html)')
+    .hint('Input the http method: (default to get), supported all/get/post..., reference: https://expressjs.com/zh-tw/guide/routing.html)')
     .input([httpMethodValidator])
-    .hint('Input url of the route: (default to: /')
+    .hint('Input url of the route: (default to: /)')
     .input()
     .hint('Input the route filename: (path/to/route-file.js)')
     .input([filenameValidator])
