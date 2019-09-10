@@ -1,14 +1,24 @@
+const path = require('path');
+
+const fileLoader = require('../file-loader');
+
 class ConfigurationLoader
 {
     constructor() {
         this.namespaces = new Map();
     }
-    set(namespace, key, value) {
-        if(!this.namespaces.has(namespace)) {
-            this.namespaces.set(namespace, new Map())
-        }
 
-        this.namespaces.get(namespace).set(key, value);
+    load() {
+        let projectDirectory = process.cwd();
+        let configurationFiles = fileLoader(`${projectDirectory}/src/config`)
+
+        configurationFiles.forEach(configFile => {
+
+            const namespace = path.basename(configFile, 'js');
+            const config = require(configFile);
+            console.log(namespace, config);
+
+        })
     }
 
     get(namespace, key) {

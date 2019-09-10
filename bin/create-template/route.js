@@ -3,7 +3,6 @@ const Inputter = require('inputter');
 const createFile = require('../lib/create-file');
 const createDirectory = require('../lib/create-directory');
 const generateRoute = require('../lib/template/route');
-const generateSubAppIndex = require('../lib/template/sub-app-index');
 const generateRouteTest = require('../lib/template/route-test');
 
 let httpMethodValidator = {
@@ -44,7 +43,6 @@ inputter
         let fileRealName = filenameToken[filenameToken.length - 1];
 
         createDirectory(`src/routes/${dirname}`)
-            .then(() => createFile(`src/routes/${dirname}/index.js`, generateSubAppIndex(), false))
             .then(() => createFile(`src/routes/${filename}`, generateRoute(method, url)))
             .then(() => createDirectory(`src/tests/routes/${(dirname).split('/').join('-')}`))
             .then(() => createFile(`src/tests/routes/${(dirname).split('/').join('-')}/${fileRealName}`, generateRouteTest(url), false))
