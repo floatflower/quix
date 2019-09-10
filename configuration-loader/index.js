@@ -22,6 +22,8 @@ class ConfigurationLoader
                 let config = require(configFile);
                 Object.keys(config).map(key => {
                     this.namespaces.get(namespace).set(key, config[key]);
+                    console.log(key);
+                    console.log(config[key]);
                 });
             }
 
