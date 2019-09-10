@@ -42,9 +42,9 @@ inputter
         let env = data[1];
         let filename = data[2];
         if(env === 'dev' || env === 'both') {
-            createFile(`src/routes/dev/${moment().format('YYYYMMDDHHmmss')}-${filename}`, generateSeeder(tableName))
+            createFile(`src/seeds/dev/${moment().format('YYYYMMDDHHmmss')}-${filename}`, generateSeeder(tableName))
         }
         if(env === 'prod' || env === 'both') {
-            createFile(`src/routes/prod/${moment().format('YYYYMMDDHHmmss')}-${filename}`, generateSeeder(tableName))
+            createFile(`src/seeds/prod/${moment().format('YYYYMMDDHHmmss')}-${filename}`, generateSeeder(tableName))
         }
     });
