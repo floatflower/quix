@@ -35,7 +35,7 @@ inputter
         let method = data[0];
 
         let url = data[1].length === 0 ? '/' : data[1];
-        url = url[0] === '/' ? url[0].substr(1, url.length - 1) : url[0];
+        url = url[0] === '/' && url.length > 1 ? url[0].substr(1, url.length - 1) : url[0];
 
         let filename = data[2];
         let filenameToken = filename.split('/');
