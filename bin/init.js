@@ -37,7 +37,7 @@ if(fs.existsSync(`${__dirname}/../../../.env`)) {
         .then(() => createFile('src/app.js', fs.readFileSync(`${__dirname}/../static/app.js`, 'utf8'), false))
         .then(() => {
             let packageJson = JSON.parse(fs.readFileSync(`${__dirname}/../../../package.json`, 'utf8'));
-            return createFile('package.json', JSON.stringify(generatePackageJson(packageJson), null, 4), false);
+            return createFile('package.json', JSON.stringify(generatePackageJson(packageJson), null, 4), true);
         })
         .then(() => createFile('bin/www.js', fs.readFileSync(`${__dirname}/../static/bin/www.js`, 'utf8'), false))
         .then(() => createFile('bin/db-drop.js', fs.readFileSync(`${__dirname}/../static/bin/db-drop.js`, 'utf8'), false))
