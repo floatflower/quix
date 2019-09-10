@@ -15,15 +15,16 @@ class ConfigurationLoader
         configurationFiles.forEach(configFile => {
 
             if(configFile !== '.keep') {
-                const namespace = path.basename(configFile, '.js');
+                let namespace = configFile.split(/(src\/config)/);
+                namespace = namespace[namespace.length - 1];
+                namespace = namespace.split('.js');
+                namespace = namespace[0];
                 if(!this.namespaces.has(namespace)) {
                     this.namespaces.set(namespace, new Map());
                 }
                 let config = require(configFile);
                 Object.keys(config).map(key => {
                     this.namespaces.get(namespace).set(key, config[key]);
-                    console.log(key);
-                    console.log(config[key]);
                 });
             }
 
