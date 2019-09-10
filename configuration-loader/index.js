@@ -14,9 +14,16 @@ class ConfigurationLoader
 
         configurationFiles.forEach(configFile => {
 
-            const namespace = path.basename(configFile, 'js');
-            const config = require(configFile);
-            console.log(namespace, config);
+            if(configFile !== '.keep') {
+                const namespace = path.basename(configFile, '.js');
+                if(!this.namespaces.has(namespace)) {
+                    this.namespaces.set(namespace, new Map());
+                }
+                let config = require(configFile);
+                Object.keys(config).map(key => {
+                    this.namespaces.get(namespace).set(key, config[key]);
+                });
+            }
 
         })
     }
