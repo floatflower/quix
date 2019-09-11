@@ -35,11 +35,11 @@ const bus = require('quix/bus');
 const eventHandlerLoader = require('quix/event-handler-loader');
 eventHandlerLoader.load();
 
-console.log('Loading pre-processor'.green);
+console.log('Loading pre-processor...'.green);
 const preProcessor = require('quix/preprocessor');
 preProcessor.load();
 
-console.log('Configure service manager.');
+console.log('Configure service manager...'.green);
 const serviceManager = require('quix/service-manager');
 serviceManager.set('quix.configuration', configurationLoader);
 serviceManager.set('quix.repository', repositoryLoader);
@@ -48,3 +48,5 @@ serviceManager.set('quix.event-handler', eventHandlerLoader);
 serviceManager.set('quix.pre-processor', preProcessor);
 
 app.listen(parseInt(process.env.APP_PORT) || 3000);
+
+console.log('Quix Application has started, enjoy!');
