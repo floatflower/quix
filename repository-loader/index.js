@@ -23,7 +23,7 @@ class RepositoryLoader
 
     get(name) {
         if(this.repositoryConstructors.has(name)) {
-            return new this.repositoryConstructors.get(name);
+            return new (this.repositoryConstructors.get(name))();
         }
         return null;
     }
