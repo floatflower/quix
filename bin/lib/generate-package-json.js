@@ -37,6 +37,7 @@ module.exports = (packageData) => {
     packageData.scripts['quix:template:route'] = 'node ./node_modules/quix/bin/create-template/route.js';
     packageData.scripts['quix:template:create-table'] = 'node ./node_modules/quix/bin/create-template/create-table.js';
     packageData.scripts['quix:template:seeder'] = 'node ./node_modules/quix/bin/create-template/seeder.js';
+    packageData.scripts['quix:template:preprocessor-rule'] = 'node ./node_modules/quix/bin/create-template/preprocessor-rule.js';
 
     if(typeof packageData.quix === 'undefined') {
         packageData.quix = {};
