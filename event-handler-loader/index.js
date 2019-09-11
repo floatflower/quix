@@ -1,5 +1,5 @@
 const fileLoader = require('../file-loader');
-
+const path = require('path');
 const bus = require('../bus');
 
 class EventHandlerLoader
