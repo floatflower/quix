@@ -23,7 +23,7 @@ if(fs.existsSync(`${projectDir}/.env`)) {
         .then(() => createDirectory('src/repository'))
         .then(() => createDirectory('src/enum'))
         .then(() => createDirectory('src/error'))
-        .then(() => createDirectory('src/event/handler'))
+        .then(() => createDirectory('src/event-handler'))
         .then(() => createDirectory('src/migrations'))
         .then(() => createDirectory('src/response-handler'))
         .then(() => createDirectory('src/routes'))

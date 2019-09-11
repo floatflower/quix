@@ -35,7 +35,7 @@ inputter
         let eventName = data[1];
 
         createFile(
-            `src/event/handler/${camelCaseToDash(handlerName)}.js`,
+            `src/event-handler/${camelCaseToDash(handlerName)}.js`,
             generateEventHandler(handlerName, eventName)
         )
 

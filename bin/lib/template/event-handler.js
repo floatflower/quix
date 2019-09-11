@@ -1,5 +1,5 @@
 module.exports = (name, event) => {
-    return `const EventHandler = require('quix/event/handler');\n` +
+    return `const EventHandler = require('quix/event-handler');\n` +
         `\n` +
         `class ${name}EventHandler extends EventHandler\n` +
         `{\n` +
