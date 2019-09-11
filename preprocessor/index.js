@@ -22,8 +22,9 @@ class Preprocessor
 
         fileLoader(`${projectDir}/src/preprocessor-rule`).map((file) => {
             if (path.basename(file).match(/^[a-zA-Z0-9\-]+.js$/)) {
-                let handler = new (require(file))();
-                this.handlers.set(handler.ruleName, handler);
+                let handlerConstructor = require(file);
+                let handler = new handlerConstructor();
+                this.handlers.set(handler.ruleName, handlerConstructor);
             }
         })
     }
