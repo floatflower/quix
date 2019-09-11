@@ -18,6 +18,7 @@ if(fs.existsSync(`${projectDir}/.env`)) {
     createDirectory('bin')
         .then(() => createDirectory('src/config'))
         .then(() => createDirectory('src/amqp'))
+        .then(() => createDirectory('src/preprocessor-rule'))
         .then(() => createDirectory('src/amqp/consumer'))
         .then(() => createDirectory('src/amqp/producer'))
         .then(() => createDirectory('src/repository'))

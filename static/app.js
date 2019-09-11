@@ -13,10 +13,10 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(cookieParser());
 
+// Auto Loading all .js file from ./src/routes
 fileLoader(`${__dirname}/routes`).map((route) => {
     if(path.basename(route).match(/^[a-zA-Z0-9\-]+.js$/)) {
         app.use('/', require(route));
     }
 });
-
 module.exports = app;

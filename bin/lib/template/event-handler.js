@@ -9,7 +9,7 @@ module.exports = (name, event) => {
         `    }\n` +
         `\n` +
         `    // override this function\n` +
-        `    handle(payload, event) {\n` +
+        `    handle(payload) {\n` +
         `\n` +
         `    }\n` +
         `}\n` +
