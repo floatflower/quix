@@ -38,7 +38,9 @@ module.exports = (packageData) => {
     packageData.scripts['quix:template:create-table'] = 'node ./node_modules/quix/bin/create-template/create-table.js';
     packageData.scripts['quix:template:seeder'] = 'node ./node_modules/quix/bin/create-template/seeder.js';
 
-
+    if(typeof packageData.quix === 'undefined') {
+        packageData.quix = {};
+    }
     packageData.main = 'src/app.js';
 
     return packageData;
