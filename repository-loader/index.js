@@ -1,11 +1,24 @@
+const path = require('path');
+
+const fileLoader = require('../file-loader');
+
 class RepositoryLoader
 {
     constructor() {
         this.repositoryConstructors = new Map();
     }
 
-    set(name, cons) {
-        this.repositoryConstructors.set(name, cons);
+    load() {
+
+        let projectDir = `${process.cwd()}/src/repository`;
+
+        fileLoader(projectDir).map((file) => {
+            if(path.basename(file).match(/^[a-zA-Z0-9\-]+.js$/)) {
+                let repository = require(file);
+                this.repositoryConstructors.set(path.basename(file, '.js'), repository);
+            }
+        })
+
     }
 
     get(name) {
