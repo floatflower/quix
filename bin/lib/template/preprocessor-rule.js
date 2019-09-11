@@ -1,8 +1,6 @@
 module.exports = (handlerName, handlerSymbol) => {
     return `const RuleHandler = require('quix/preprocessor/rule/rule');\n` +
         `\n` +
-        `const dh = require('quix/data-handler');\n` +
-        `\n` +
         `class ${handlerName}Handler extends RuleHandler\n` +
         `{\n` +
         `    constructor() {\n` +
