@@ -7,9 +7,8 @@ class EventHandler {
     /**
      * @abstract
      * @param payload
-     * @param event
      */
-    handle(payload, event) {}
+    handle(payload) {}
 
 }
 
