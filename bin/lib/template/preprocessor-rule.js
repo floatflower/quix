@@ -3,10 +3,10 @@ module.exports = (handlerName, handlerSymbol) => {
         `\n` +
         `const dh = require('quix/data-handler');\n` +
         `\n` +
-        `class BooleanHandler extends RuleHandler\n` +
+        `class ${handlerName}Handler extends RuleHandler\n` +
         `{\n` +
         `    constructor() {\n` +
-        `        super('boolean');\n` +
+        `        super('${handlerSymbol}');\n` +
         `    }\n` +
         `\n` +
         `    handle(data) {\n` +
@@ -15,5 +15,5 @@ module.exports = (handlerName, handlerSymbol) => {
         `\n` +
         `}\n` +
         `\n` +
-        `module.exports = BooleanHandler;`
+        `module.exports = ${handlerName}Handler;`
 };
