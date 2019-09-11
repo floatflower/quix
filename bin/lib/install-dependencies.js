@@ -22,7 +22,8 @@ module.exports = () => {
         '@line/bot-sdk',
         'node-telegram-bot-api',
         'chai',
-        'chai-http'
+        'chai-http',
+        'colors'
     ];
 
     return `npm install --save ` + dependencies.join(' ');
