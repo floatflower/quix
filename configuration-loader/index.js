@@ -15,7 +15,7 @@ class ConfigurationLoader
 
         configurationFiles.forEach(configFile => {
 
-            if(configFile !== '.keep') {
+            if(path.basename(configFile) !== '.keep') {
                 let namespace = configFile.split(/(src\/config)/);
                 namespace = namespace[namespace.length - 1];
                 namespace = namespace.split('.js');
