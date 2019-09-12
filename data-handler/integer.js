@@ -9,4 +9,4 @@ module.exports = (data, defaultValue = 0, base = 10) => {
     else {
         return parsed;
     }
-}
+};

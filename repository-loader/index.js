@@ -15,6 +15,7 @@ class RepositoryLoader
         fileLoader(projectDir).map((file) => {
             if(path.basename(file).match(/^[a-zA-Z0-9\-]+.js$/)) {
                 let repository = require(file);
+                console.log(`[Info] Repository ${path.basename(file, '.js')} loaded.`.yellow)
                 this.repositoryConstructors.set(path.basename(file, '.js'), repository);
             }
         })

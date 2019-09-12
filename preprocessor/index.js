@@ -14,16 +14,26 @@ class Preprocessor
 
         let projectDir = process.cwd();
 
+        console.log(`[Info] Default rule 'float' loaded`.yellow);
         this.handlers.set('float', require('./rule/float'));
+        console.log(`[Info] Default rule 'integer' loaded`.yellow);
         this.handlers.set('integer', require('./rule/integer'));
+        console.log(`[Info] Default rule 'string' loaded`.yellow);
         this.handlers.set('string', require('./rule/string'));
+        console.log(`[Info] Default rule 'boolean' loaded`.yellow);
         this.handlers.set('boolean', require('./rule/boolean'));
+        console.log(`[Info] Default rule 'datetime' loaded`.yellow);
         this.handlers.set('datetime', require('./rule/datetime'));
 
         fileLoader(`${projectDir}/src/preprocessor-rule`).map((file) => {
             if (path.basename(file).match(/^[a-zA-Z0-9\-]+.js$/)) {
                 let handlerConstructor = require(file);
                 let handler = new handlerConstructor();
+                if(['float', 'integer', 'string', 'boolean', 'datetime'].includes(handler.ruleName)) {
+                    console.log(`[Info] Overwrite default rule '${handler.ruleName}'`.yellow);
+                } else {
+                    console.log(`[Info] Rule '${handler.ruleName}' loaded`.yellow);
+                }
                 this.handlers.set(handler.ruleName, handlerConstructor);
             }
         })

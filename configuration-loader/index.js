@@ -1,4 +1,5 @@
 const path = require('path');
+const colors = require('colors');
 
 const fileLoader = require('../file-loader');
 
@@ -20,6 +21,7 @@ class ConfigurationLoader
                 namespace = namespace.split('.js');
                 namespace = namespace[0];
                 if(!this.namespaces.has(namespace)) {
+                    console.log(`[Info] Configuration ${namespace} loaded.`.yellow)
                     this.namespaces.set(namespace, new Map());
                 }
                 let config = require(configFile);
