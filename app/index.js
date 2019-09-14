@@ -69,4 +69,6 @@ serviceManager.set('quix.event-handler', eventHandlerLoader);
 serviceManager.set('quix.pre-processor', preProcessor);
 serviceManager.set('quix.knex', knex);
 
+app.locals.serviceManager = serviceManager;
+
 module.exports = app;
