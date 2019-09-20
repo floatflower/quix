@@ -2,7 +2,7 @@ const validation = require('../validation');
 
 class Base {
 
-    constructor(table, knex) {
+    constructor(knex, table) {
         this.knex = knex;
         this.table = table;
     }
