@@ -48,12 +48,28 @@ class Preprocessor
             if(typeof rule === 'string') {
                 if(this.handlers.has(rule)) {
                     let handler = new (this.handlers.get(rule));
-                    result = handler.handle(result);
+                    if(Array.isArray(data)) {
+                        let handledData = [];
+                        data.forEach(d => {
+                            handledData.push(handler.handle(d))
+                        })
+                        return handledData;
+                    } else {
+                        result = handler.handle(result);
+                    }
                 }
             }
             else if(typeof rule === 'object') {
                 let handler = new (this.handlers.get(rule.handler))(...rule.params);
-                result = handler.handle(result);
+                if(Array.isArray(data)) {
+                    let handledData = [];
+                    data.forEach(d => {
+                        handledData.push(handler.handle(d));
+                    })
+                    return handledData;
+                } else {
+                    result = handler.handle(result);
+                }
             }
         });
 
