@@ -53,7 +53,7 @@ class Preprocessor
                         data.forEach(d => {
                             handledData.push(handler.handle(d))
                         })
-                        return handledData;
+                        result = handledData;
                     } else {
                         result = handler.handle(result);
                     }
@@ -66,7 +66,7 @@ class Preprocessor
                     data.forEach(d => {
                         handledData.push(handler.handle(d));
                     })
-                    return handledData;
+                    result = handledData;
                 } else {
                     result = handler.handle(result);
                 }
