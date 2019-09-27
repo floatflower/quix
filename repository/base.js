@@ -1,4 +1,5 @@
 const validation = require('../validation');
+const dataHandler = require('../data-handler');
 
 class Base {
 
@@ -94,7 +95,7 @@ class Base {
             // TODO: Handle Error
             return q.then((results) => {
 
-                resolve(results[0].c);
+                resolve(dataHandler.integer(results[0].c));
 
             }, reject)
 
