@@ -13,6 +13,27 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(cookieParser());
 
+/**
+ * Initiate Application
+ */
+app.use((req, res, next) => {
+
+    /**
+     * 允許跨域存取
+     * 後期需要將 * 從資料庫返回
+     */
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS"');
+    res.set('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization');
+    res.set('Access-Control-Allow-Credentials', true);
+
+    next();
+});
+
+app.options('*', (req, res, next) => {
+    res.send();
+});
+
 // Auto Loading all .js file from ./src/routes
 fileLoader(`${process.cwd()}/src/routes`).map((route) => {
     if(path.basename(route).match(/^[a-zA-Z0-9\-]+.js$/)) {
