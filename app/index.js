@@ -6,8 +6,11 @@ const logger = require('morgan');
 
 const fileLoader = require('../file-loader');
 
+// create a write stream (in append mode)
+const accessLogStream = fs.createWriteStream(path.join(`${process.cwd()}/var/log`, 'access.log'), { flags: 'a' })
+
 let app = express();
-app.use(logger(process.env.NODE_ENV || "dev"));
+app.use(logger('combined', {stream: accessLogStream}));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
