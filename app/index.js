@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 require('dotenv').config({ path: `${process.cwd()}/.env` });
 const path = require('path');
 const express = require('express');
