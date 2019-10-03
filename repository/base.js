@@ -31,8 +31,8 @@ class Base {
                 })
             }
 
-            if(limit !== 'undefined') q.limit(limit);
-            if(offset !== 'undefined') q.offset(offset);
+            if(typeof limit !== 'undefined') q.limit(limit);
+            if(typeof offset !== 'undefined') q.offset(offset);
 
             // TODO: Handle Error
             return q.then(resolve, reject);

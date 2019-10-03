@@ -40,8 +40,8 @@ class User extends Base
                     })
                 }
 
-                if(limit !== 'undefined') q.limit(limit);
-                if(offset !== 'undefined') q.offset(offset);
+                if(typeof limit !== 'undefined') q.limit(limit);
+                if(typeof offset !== 'undefined') q.offset(offset);
 
                 return q.then(resolve, reject);
             }
