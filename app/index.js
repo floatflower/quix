@@ -1,12 +1,12 @@
-const fs = require('fs');
-
 require('dotenv').config({ path: `${process.cwd()}/.env` });
+
+const fs = require('fs');
 const path = require('path');
+
+const colors = require('colors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-const fileLoader = require('../file-loader');
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(`${process.cwd()}/var/log`, 'access.log'), { flags: 'a' })
@@ -17,50 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use(cookieParser());
-
-/**
- * Initiate Application
- */
-app.use((req, res, next) => {
-
-    /**
-     * 允許跨域存取
-     * 後期需要將 * 從資料庫返回
-     */
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS"');
-    res.set('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization');
-    res.set('Access-Control-Allow-Credentials', true);
-
-    next();
-});
-
-app.options('*', (req, res, next) => {
-    res.send();
-});
-
-// Auto Loading all .js file from ./src/routes
-fileLoader(`${process.cwd()}/src/routes`).map((route) => {
-    if(path.basename(route).match(/^[a-zA-Z0-9\-]+.js$/)) {
-        app.use('/', require(route));
-    }
-});
-
-const colors = require('colors');
-
-console.log(
-    ('  _____ _                 _           __            \n' +
-        ' |_   _| |__   __ _ _ __ | | _____   / _| ___  _ __ \n' +
-        '   | | | \'_ \\ / _` | \'_ \\| |/ / __| | |_ / _ \\| \'__|\n' +
-        '   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |   \n' +
-        '   |_| |_| |_|\\__,_|_| |_|_|\\_\\___/ |_|  \\___/|_|   \n' +
-        '  _   _     _                ___        _           \n' +
-        ' | | | |___(_)_ __   __ _   / _ \\ _   _(_)_  __     \n' +
-        ' | | | / __| | \'_ \\ / _` | | | | | | | | \\ \\/ /     \n' +
-        ' | |_| \\__ \\ | | | | (_| | | |_| | |_| | |>  <      \n' +
-        '  \\___/|___/_|_| |_|\\__, |  \\__\\_\\\\__,_|_/_/\\_\\     \n' +
-        '                    |___/                           \n').blue
-);
 
 console.log('For more information, please visit: http://docs.quix.site\n\n'.blue);
 
@@ -96,5 +52,19 @@ serviceManager.set('quix.pre-processor', preProcessor);
 serviceManager.set('quix.knex', knex);
 
 app.locals.serviceManager = serviceManager;
+
+console.log(
+    ('  _____ _                 _           __            \n' +
+        ' |_   _| |__   __ _ _ __ | | _____   / _| ___  _ __ \n' +
+        '   | | | \'_ \\ / _` | \'_ \\| |/ / __| | |_ / _ \\| \'__|\n' +
+        '   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |   \n' +
+        '   |_| |_| |_|\\__,_|_| |_|_|\\_\\___/ |_|  \\___/|_|   \n' +
+        '  _   _     _                ___        _           \n' +
+        ' | | | |___(_)_ __   __ _   / _ \\ _   _(_)_  __     \n' +
+        ' | | | / __| | \'_ \\ / _` | | | | | | | | \\ \\/ /     \n' +
+        ' | |_| \\__ \\ | | | | (_| | | |_| | |_| | |>  <      \n' +
+        '  \\___/|___/_|_| |_|\\__, |  \\__\\_\\\\__,_|_/_/\\_\\     \n' +
+        '                    |___/                           \n').blue
+);
 
 module.exports = app;

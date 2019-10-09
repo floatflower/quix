@@ -102,6 +102,23 @@ class Base {
         })
     };
 
+    update(criteria = {}, updateData) {
+        return new Promise((resolve, reject) => {
+
+            let q = this.knex(this.table);
+
+            if(validation.isEmptyObject(criteria)) {
+                Object.keys(criteria).forEach((key) => {
+                    q.andWhere(key, '=', criteria[key]);
+                });
+                q.update(updateData);
+            }
+
+            return q.then(resolve, reject);
+
+        })
+    }
+
     remove(criteria = {}) {
 
         return new Promise((resolve, reject) => {
@@ -110,9 +127,7 @@ class Base {
 
             if(!validation.isEmptyObject(criteria)) {
                 Object.keys(criteria).forEach((key) => {
-
                     q.andWhere(key, '=', criteria[key]);
-
                 });
             }
 
