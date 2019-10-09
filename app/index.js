@@ -12,9 +12,13 @@ const logger = require('morgan');
 const accessLogStream = fs.createWriteStream(path.join(`${process.cwd()}/var/log`, 'access.log'), { flags: 'a' })
 
 let app = express();
+// view engine setup
+app.set('views', path.join(process.cwd(), 'views'));
+app.set('view engine', 'twig');
 app.use(logger(process.env.NODE_ENV || 'dev', {stream: accessLogStream}));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.use(cookieParser());
 
