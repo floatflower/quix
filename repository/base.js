@@ -58,9 +58,7 @@ class Base {
 
             if(!validation.isEmptyObject(orderBy)) {
                 Object.keys(orderBy).forEach((key) => {
-
                     q.orderBy(key, orderBy[key]);
-
                 })
             }
 
