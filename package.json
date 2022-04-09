@@ -25,7 +25,7 @@
         "inputter": "git+https://github.com/floatflower/inputter.git",
         "knex": "^0.19.3",
         "mkdirp": "^0.5.1",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "morgan": "^1.9.1",
         "randomstring": "^1.1.5",
         "twig": "^1.13.3"
